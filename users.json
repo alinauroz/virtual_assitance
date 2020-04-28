@@ -1,0 +1,6 @@
+[
+    {"name" : "Ali Nauroze", "age" : 22, "city" : "Islamabad", "region" : "r1"},
+    {"name" : "Abdul Wahab", "age" : 32, "city" : "Multan", "region" : "r1"},
+    {"name" : "Abdul Ahad", "age" : 42, "city" : "Jhang", "region" : "r3"},
+    {"name" : "Moazin Khatri", "age" : 52, "city" : "Badin", "region" : "r3"}    
+]
