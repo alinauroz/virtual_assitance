@@ -8,7 +8,7 @@ Router.get("/", (req, res) => {
 });
 
 Router.post("/", (req, res) => {
-    msgs.push(req.body.Body);
+    msgs.push(req.body);
     res.send("ok")
 });
 
