@@ -41,3 +41,5 @@ const parse = str => {
         return {err};
     }
 }
+
+module.exports = parse;
