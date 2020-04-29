@@ -10,8 +10,12 @@ Router.get("/", (req, res) => {
 
 Router.post("/", (req, res) => {
     let msg = req.body.Body;
-    msgs.push(msg);
-    res.send("ok");
+    msgs.push(req.body);
+
+    let parsedMsg = parse(msg);
+    let msgToProcess = Object.assign({}, parsedMsg, {via : "whatsapp"}, {from : req.body.from});
+
+    res.send({"msg" : "ok"});
 });
 
 module.exports = Router;
