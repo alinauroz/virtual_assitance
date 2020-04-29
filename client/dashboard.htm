@@ -4,8 +4,8 @@
         <script src = "/socket.io/socket.io.js"></script>
         <script>
             let socket = io.connect();
-            socket.on("eve", (data) => {
-                alert(data)
+            socket.on("update", (data) => {
+                alert(JSON.stringify(data))
             })
         </script>
     </head>
