@@ -7,19 +7,18 @@ const foodathome = tokens => {
         return {"err" : "Incomplete Input"}
 
     if (isNaN(tokens[1]))
-        tokens[1] = 1;
+        return {"command" : tokens[0], help : true}
 
     return {"command" : tokens[0], people : tokens[1]}
 }
 
 const fundtransfer = tokens => {
-    let requiredMinParams = 3;
 
-    if (tokens.length < requiredMinParams)
-        return {"err" : "Incomplete Input"}
-
-    if (isNaN(tokens[2]))
+    if (tokens[2] && isNaN(tokens[2]))
         return {"err" : "invalid amount"}
+    
+    if (isNaN(tokens[1]))
+        return {"command" : tokens[0], help : true}
 
     return {"command" : tokens[0], "to" : tokens[1], "amount" : tokens[2]}
 }

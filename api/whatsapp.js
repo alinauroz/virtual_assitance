@@ -2,6 +2,16 @@ const express = require("express");
 const Router = express.Router();
 const parse = require("../functions/parse.js");
 
+//importing services
+const FundTransfer = require("../service/FundTransfer");
+const FoodAtHome = require("../service/FoodAtHome");
+
+//register functions for these serives
+let serviceFunctions = {
+    "fundtransfer" : FundTransfer,
+    "foodathome" : FoodAtHome
+}
+
 let msgs = new Array();
 
 Router.get("/", (req, res) => {
@@ -13,9 +23,16 @@ Router.post("/", (req, res) => {
     msgs.push(req.body);
 
     let parsedMsg = parse(msg);
-    let msgToProcess = Object.assign({}, parsedMsg, {via : "whatsapp"}, {from : req.body.from});
+    let msgToProcess = Object.assign({}, parsedMsg, {via : "whatsapp"}, {from : req.body.From});
 
-    res.send({"msg" : "ok"});
+    console.log(msgToProcess)
+    
+    serviceFunctions[msgToProcess.command].handle(msgToProcess);
+    
+
+    res.send({"msg" : msgToProcess});
 });
+
+FundTransfer.handle({help : true});
 
 module.exports = Router;

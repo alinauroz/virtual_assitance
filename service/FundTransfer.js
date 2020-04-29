@@ -1,6 +1,8 @@
 const user = require("../integration/user");
 const number = require("../integration/number");
 
+const whatsapp = require("../integration/whatsapp");
+
 const fundTransfer = data => {
     try {
 
@@ -31,11 +33,23 @@ const fundTransfer = data => {
 
 //phoneNumber is the number which wants help
 
-const help = phoneNumber => {
-    return `To Transfer Funds type \r\n fundtransfer <Recipients PhoneNumber> <AmountToTransfer> and send it to 001001`;
+const help = (phoneNumber, api) => {
+    if (api == "whatsapp")
+        whatsapp.send( `To Transfer Funds type \r\n fundtransfer <Recipients PhoneNumber> <AmountToTransfer> and send it to 001001`, phoneNumber);
 }
 
+const handle = (input) => {
+    console.log(input)
+    if (input.help) {
+        if (input.via == "whatsapp")
+            help(input.from, "whatsapp")
+    }
+    else if (input.amount && input.to){
+        
+    }
+}
+
+
 module.exports = {
-    fundTransfer,
-    help
+    handle,
 }
