@@ -8,10 +8,10 @@ const fundTransfer = data => {
     try {
 
         if (data.amount <= 0) {
-            return "Invalid Transfer Amount"
+            return {err, msg : "Invalid Transfer Amount"}
         }
         else if (! data.to || ! (number.get(data.to))) {
-            return "Invalid Recipient";
+            return {err, msg : "Invalid Recipient"};
         }
         else if (user.getBalance(number.getCNIC(data.from)) >= data.amount) {
             
@@ -21,14 +21,21 @@ const fundTransfer = data => {
             let to = user.get(number.getCNIC(data.to));
             let from = user.get(number.getCNIC(data.from));
 
-            return `Amount ${data.amount} Rs is transferred to ${to.name} from your account. Your new balance is ${from.balance} Rs.`
+            return {
+                msg : `Amount ${data.amount} Rs is transferred to ${to.name} from your account. Your new balance is ${from.balance} Rs.`,
+                msgToRecipient : `Amount ${data.amount} Rs is transferred to your account from ${from.name} account. Your new balance is ${to.balance} Rs.`,
+            }
         }
         else {
-            return "Insufficient Balance";
+            return  {err, msg : "Insufficient Balance"};
         }
     }
     catch (err) {
-        return "Error while tranferring fund. This may be due to wrong input format or incomplete input. "
+        return {
+            err, 
+            msg : "Error while tranferring fund. This may be due to wrong input format or incomplete input. ",
+            
+        }
     }
 }
 
@@ -47,8 +54,11 @@ const handle = (input) => {
     }
 
     else if (input.amount && input.to){
-        let x = fundTransfer({from : formatNumber(input.from), to : formatNumber(input.to), amount : input.amount});
-        whatsapp.send(x, input.from);
+        let res_ = fundTransfer({from : formatNumber(input.from), to : formatNumber(input.to), amount : input.amount});
+        whatsapp.send(res_.msg, input.from);
+        if (! res_.err) {
+            whatsapp.send(res_.msgToRecipient, "whatsapp:" + formatNumber(input.to));
+        }
     }
 
 }
