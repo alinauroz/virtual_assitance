@@ -24,15 +24,11 @@ Router.post("/", (req, res) => {
 
     let parsedMsg = parse(msg);
     let msgToProcess = Object.assign({}, parsedMsg, {via : "whatsapp"}, {from : req.body.From});
-
-    console.log(msgToProcess)
     
     serviceFunctions[msgToProcess.command].handle(msgToProcess);
     
 
     res.send({"msg" : msgToProcess});
 });
-
-FundTransfer.handle({help : true});
 
 module.exports = Router;

@@ -20,7 +20,7 @@ const fundtransfer = tokens => {
     if (isNaN(tokens[1]))
         return {"command" : tokens[0], help : true}
 
-    return {"command" : tokens[0], "to" : tokens[1], "amount" : tokens[2]}
+    return {"command" : tokens[0], "to" : tokens[1], "amount" : Number(tokens[2])}
 }
 
 /* 

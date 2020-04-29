@@ -1,5 +1,6 @@
 const user = require("../integration/user");
 const number = require("../integration/number");
+const formatNumber = require("../functions/formatNumber");
 
 const whatsapp = require("../integration/whatsapp");
 
@@ -39,14 +40,17 @@ const help = (phoneNumber, api) => {
 }
 
 const handle = (input) => {
-    console.log(input)
+
     if (input.help) {
         if (input.via == "whatsapp")
             help(input.from, "whatsapp")
     }
+
     else if (input.amount && input.to){
-        
+        let x = fundTransfer({from : formatNumber(input.from), to : formatNumber(input.to), amount : input.amount});
+        whatsapp.send(x, input.from);
     }
+
 }
 
 
