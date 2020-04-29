@@ -1,6 +1,6 @@
 const express = require("express");
 const Router = express.Router();
-const parse = require("./functions/parse.js");
+const parse = require("../functions/parse.js");
 
 let msgs = new Array();
 
@@ -11,7 +11,7 @@ Router.get("/", (req, res) => {
 Router.post("/", (req, res) => {
     let msg = req.body.Body;
     msgs.push(msg);
-    res.send("ok")
+    res.send("ok");
 });
 
 module.exports = Router;
