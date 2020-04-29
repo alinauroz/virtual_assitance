@@ -22,8 +22,8 @@ const fundTransfer = data => {
             let from = user.get(number.getCNIC(data.from));
 
             return {
-                msg : `Amount ${data.amount} Rs is transferred to ${to.name} from your account. Your new balance is ${from.balance} Rs.`,
-                msgToRecipient : `Amount ${data.amount} Rs is transferred to your account from ${from.name} account. Your new balance is ${to.balance} Rs.`,
+                msg : `Amount ${data.amount} Rs is transferred to ${to.name}'s from your account. Your new balance is ${from.balance} Rs.`,
+                msgToRecipient : `Amount ${data.amount} Rs is transferred to your account from ${from.name}'s account. Your new balance is ${to.balance} Rs.`,
             }
         }
         else {
