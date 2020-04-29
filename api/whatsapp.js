@@ -1,6 +1,7 @@
 const express = require("express");
 const Router = express.Router();
 const parse = require("../functions/parse.js");
+let io;
 
 //importing services
 const FundTransfer = require("../service/FundTransfer");
@@ -31,4 +32,12 @@ Router.post("/", (req, res) => {
     res.send({"msg" : msgToProcess});
 });
 
-module.exports = Router;
+const setSocketIO = io_ => {
+    io = io_;
+    FundTransfer.setSocketIO(io);
+}
+
+module.exports = {
+    Router,
+    setSocketIO
+}

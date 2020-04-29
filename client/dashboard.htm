@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Dashboard | Virtual Assistance</title>
+        <script src = "/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io.connect();
+            socket.on("eve", (data) => {
+                alert(data)
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

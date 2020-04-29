@@ -1,6 +1,7 @@
 const user = require("../integration/user");
 const number = require("../integration/number");
 const formatNumber = require("../functions/formatNumber");
+let io;
 
 const whatsapp = require("../integration/whatsapp");
 
@@ -58,12 +59,17 @@ const handle = (input) => {
         whatsapp.send(res_.msg, input.from);
         if (! res_.err) {
             whatsapp.send(res_.msgToRecipient, "whatsapp:" + formatNumber(input.to));
+            io ? io.sockets.emit("update", {"command" : "fundtransfer", "msg" : `${formatNumber(data.from)} transferred ${data.amount} Rs to ${data.to}`}) : "";
         }
     }
+}
 
+const setSocketIO = io_ => {
+    io = io_;
 }
 
 
 module.exports = {
     handle,
+    setSocketIO
 }
