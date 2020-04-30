@@ -4,12 +4,32 @@
         <script src = "/socket.io/socket.io.js"></script>
         <script>
             let socket = io.connect();
+            
             socket.on("update", (data) => {
-                alert(JSON.stringify(data))
+                document.getElementById("logs").innerHTML += `<div class = 'unit'>${data.msg}</div>`
             })
+
+
         </script>
+        <style>
+            #logs {
+                width : 250px;
+                height : calc(100% - 50px);
+                margin : 25px;
+            }
+            .unit {
+                background-color: rgba(30, 30, 30, 0.9);
+                padding : 5px;
+                border-radius: 3px;
+                color : white;
+                font-family: 'segoe UI', sans-serif;
+                font-size : 13px;
+            }
+        </style>
     </head>
     <body>
-        
+        <div id = "logs">
+
+        </div>
     </body>
 </html>
