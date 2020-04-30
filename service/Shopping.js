@@ -50,10 +50,12 @@ const buy = (phoneNumber, api, id) => {
 const handle = input => {
     if (input.help) {
         help(input.from, input.via);
+        io.sockets.emit("update", {updateType : "purchase", msg : `${formatNumber(input.from)} asked for help to do shopping`, date : Date.now()});
     }
     else if (input.list) {
         //users wants shopping list
         sendShoppingList(input.from, input.via);
+        io.sockets.emit("update", {updateType : "purchase", msg : `${formatNumber(input.from)} requested for shopping list`, date : Date.now()});
     }
     else if (input.id) {
         if(buy(input.from, input.via, input.id)) {
