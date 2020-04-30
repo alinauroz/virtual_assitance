@@ -4,6 +4,7 @@ const formatNumber = require("../functions/formatNumber");
 let io;
 
 const whatsapp = require("../integration/whatsapp");
+const sms = require("../integration/sms");
 
 const fundTransfer = data => {
     try {
@@ -45,7 +46,9 @@ const fundTransfer = data => {
 const help = (phoneNumber, api) => {
     if (api == "whatsapp")
         whatsapp.send( `To Transfer Funds type \r\n fundtransfer <Recipients PhoneNumber> <AmountToTransfer> and send it to 001001`, phoneNumber);
-}
+    else
+        sms.send( `To Transfer Funds type \r\n fundtransfer <Recipients PhoneNumber> <AmountToTransfer> and send it to 001001`, formatNumber(phoneNumber));
+    }
 
 const handle = (input) => {
 
@@ -58,9 +61,17 @@ const handle = (input) => {
 
     else if (input.amount && input.to){
         let res_ = fundTransfer({from : formatNumber(input.from), to : formatNumber(input.to), amount : input.amount});
-        whatsapp.send(res_.msg, input.from);
+        
+        input.via == "whatsapp" ? 
+            whatsapp.send(res_.msg, input.from) 
+            : sms.send(res_.msg, input.from);
+        
         if (! res_.err) {
-            whatsapp.send(res_.msgToRecipient, "whatsapp:" + formatNumber(input.to));
+
+            input.via == "whatsapp" ?
+                whatsapp.send(res_.msgToRecipient, "whatsapp:" + formatNumber(input.to))
+                : sms.whatsapp.send(res_.msgToRecipient, "whatsapp:" + formatNumber(input.to))
+
             io ? io.sockets.emit("update", {"date" : Date.now(), "updateType" : "fundtransfer", "msg" : `${formatNumber(input.from)} transferred ${input.amount} Rs to ${input.to}`}) : "";
         }
     }

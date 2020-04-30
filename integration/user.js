@@ -30,10 +30,21 @@ const getBalance = cnic => {
     }
 }
 
+const getAddress = cnic => {
+    try {
+        let {address, city} = _.find(users, {cnic});
+        return address + ", " + city;
+    }
+    catch (err) {
+        return -1;
+    }
+}
+
 module.exports = {
     get,
     add,
     updateBalance,
-    getBalance
+    getBalance,
+    getAddress
 }
 

@@ -1,7 +1,8 @@
 [
-    {"cnic" : "01001", "name" : "Ali Nauroze", "age" : 22, "city" : "Islamabad", "region" : "r1", "balance" : 100},
-    {"cnic" : "01002", "name" : "Abdul Wahab", "age" : 32, "city" : "Multan", "region" : "r1", "balance" : 100},
-    {"cnic" : "01005", "name" : "Sajida Rani", "age" : 43, "city" : "Multan", "region" : "r2", "balance" : 100},
-    {"cnic" : "02003", "name" : "Abdul Ahad", "age" : 42, "city" : "Jhang", "region" : "r2", "balance" : 100},
-    {"cnic" : "03004", "name" : "Moazin Khatri", "age" : 52, "city" : "Badin", "region" : "r3", "balance" : 100}    
+    {"cnic" : "01001", "address" : "House No 1, street 9", "name" : "Ali Nauroze", "age" : 22, "city" : "Islamabad", "region" : "r1", "balance" : 100},
+    {"cnic" : "01002", "address" : "House No 2, street 10", "name" : "Abdul Wahab", "age" : 32, "city" : "Multan", "region" : "r1", "balance" : 100},
+    {"cnic" : "01005", "address" : "House No 3, street 11", "name" : "Sajida Rani", "age" : 43, "city" : "Multan", "region" : "r2", "balance" : 100},
+    {"cnic" : "02003", "address" : "House No 4, street 12", "name" : "Abdul Ahad", "age" : 42, "city" : "Jhang", "region" : "r2", "balance" : 100},
+    {"cnic" : "03004", "address" : "House No 5, street 13", "name" : "Moazin Khatri", "age" : 52, "city" : "Badin", "region" : "r3", "balance" : 100}
+        
 ]

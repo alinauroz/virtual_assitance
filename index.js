@@ -9,14 +9,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const whatsappRouter = require("./api/whatsapp");
+const smsRouter = require("./api/sms");
 
 whatsappRouter.setSocketIO(io);
+smsRouter.setSocketIO(io);
 
 app.get("/dashboard", (req, res) => {
     res.sendFile(__dirname + "/client/dashboard.htm");
 });
 
 app.use("/whatsapp", whatsappRouter.Router);
+app.use("/sms", smsRouter.Router);
 
 app.get ("/", (req, res) => {
     res.send({"msg" : "server working"})

@@ -26,7 +26,7 @@ Router.post("/", (req, res) => {
     msgs.push(req.body);
 
     let parsedMsg = parse(msg);
-    let msgToProcess = Object.assign({}, parsedMsg, {via : "whatsapp"}, {from : req.body.From});
+    let msgToProcess = Object.assign({}, parsedMsg, {via : "sms"}, {from : req.body.From});
     
     serviceFunctions[msgToProcess.command].handle(msgToProcess);
     
@@ -37,7 +37,6 @@ Router.post("/", (req, res) => {
 const setSocketIO = io_ => {
     io = io_;
     FundTransfer.setSocketIO(io);
-    Shopping.setSocketIO(io);
 }
 
 module.exports = {

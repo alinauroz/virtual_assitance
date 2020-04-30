@@ -1,11 +1,6 @@
 const lex = str => str.split (" ").map(s => s.trim()).filter(s => s.length);
 
 const foodathome = tokens => {
-    let requiredMinParams = 1;
-    
-    if (tokens.length < requiredMinParams)
-        return {"err" : "Incomplete Input"}
-
     if (isNaN(tokens[1]))
         return {"command" : tokens[0], help : true}
 
