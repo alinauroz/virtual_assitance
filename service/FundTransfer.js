@@ -52,7 +52,8 @@ const handle = (input) => {
     if (input.help) {
         if (input.via == "whatsapp")
             help(input.from, "whatsapp")
-            io ? io.sockets.emit("update", {"date" : Date.now(), "updateType" : "help", "msg" : `${formatNumber(input.from)} asked for help to transfer funds `}) : "";
+            
+        io ? io.sockets.emit("update", {"date" : Date.now(), "updateType" : "help", "msg" : `${formatNumber(input.from)} asked for help to transfer funds `}) : "";
     }
 
     else if (input.amount && input.to){

@@ -23,12 +23,28 @@ const fundtransfer = tokens => {
     return {"command" : tokens[0], "to" : tokens[1], "amount" : Number(tokens[2])}
 }
 
+const shopping = tokens => {
+    
+    if (tokens[1] == "list") {
+        return {"command" : "shopping", "list" : true}
+    }
+    else if (/^\d+$/.test(tokens[1])) {
+        //this means the second token is an integer which is the id of the product that user wants to buy
+        return {"command" : "shopping" , "id" : tokens[1]}
+    }
+    else {
+        return {"command" : "shopping" , "help" : true}
+    }
+
+}
+
 /* 
     Register parser function for every service
 */ 
 const tokenFunction = {
     "foodathome" : foodathome,
-    "fundtransfer" : fundtransfer
+    "fundtransfer" : fundtransfer,
+    "shopping" : shopping,
 }
 
 const parse = str => {

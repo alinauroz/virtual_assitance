@@ -6,11 +6,13 @@ let io;
 //importing services
 const FundTransfer = require("../service/FundTransfer");
 const FoodAtHome = require("../service/FoodAtHome");
+const Shopping = require("../service/Shopping");
 
 //register functions for these serives
 let serviceFunctions = {
     "fundtransfer" : FundTransfer,
-    "foodathome" : FoodAtHome
+    "foodathome" : FoodAtHome,
+    "shopping" : Shopping
 }
 
 let msgs = new Array();
