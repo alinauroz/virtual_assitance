@@ -1,7 +1,11 @@
 const express = require("express");
 const Router = express.Router();
 const parse = require("../functions/parse.js");
+const env = require("../env.json");
+const twilio = require("twilio");
 let io;
+
+let productionMode = process.env.PORT;
 
 //importing services
 const FundTransfer = require("../service/FundTransfer");
@@ -24,6 +28,21 @@ Router.get("/", (req, res) => {
 Router.post("/", (req, res) => {
 
     //perform signature validations here
+
+    const twilioSignature = req.headers['x-twilio-signature'];
+    const params = req.body;
+    const url = 'https://frozen-sierra-78630.herokuapp.com/whatsapp';
+
+    const requestIsValid = twilio.validateRequest(
+        env.authToken,
+        twilioSignature,
+        url,
+        params
+    );
+
+    if (!requestIsValid && productionMode) {
+        return res.status(401).send('Unauthorized');
+    }
 
     let msg = req.body.Body;
     msgs.push(req.body);
