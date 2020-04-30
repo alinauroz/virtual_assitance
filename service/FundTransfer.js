@@ -59,7 +59,7 @@ const handle = (input) => {
         whatsapp.send(res_.msg, input.from);
         if (! res_.err) {
             whatsapp.send(res_.msgToRecipient, "whatsapp:" + formatNumber(input.to));
-            io ? io.sockets.emit("update", {"command" : "fundtransfer", "msg" : `${formatNumber(data.from)} transferred ${data.amount} Rs to ${data.to}`}) : "";
+            io ? io.sockets.emit("update", {"command" : "fundtransfer", "msg" : `${formatNumber(input.from)} transferred ${input.amount} Rs to ${input.to}`}) : "";
         }
     }
 }
