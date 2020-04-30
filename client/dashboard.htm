@@ -5,16 +5,37 @@
         <script>
             let socket = io.connect();
             
+            const colors = {
+                "fundtransfer" : "#ff5c55",
+                "foodathome" : "#1cce3d",
+                "help" : "#fec114"
+            }
+
             socket.on("update", (data) => {
-                document.getElementById("logs").innerHTML += `<div class = 'unit'>${data.msg}</div>`
+                document.getElementById("logs").innerHTML = `<div class = 'unit'>${data.msg} <br> <p class = 'date' style='color:${colors[data.updateType]}'>${new Date(data.date)}</p></div>` + document.getElementById("logs").innerHTML;
             })
 
 
         </script>
         <style>
+            body {
+                font-family : "segoe UI", sans-serif;
+            }
+            #title {
+                font-size : 32px;
+                font-weight : bold;
+                margin : 0px;
+                margin-top : 25px;
+                margin-left : 25px;
+            }
+            #subtitle {
+                margin : 0px;
+                margin-top : 5px;
+                margin-left : 25px;
+            }
             #logs {
                 width : 250px;
-                height : calc(100% - 50px);
+                height : calc(100% - 150px);
                 margin : 25px;
             }
             .unit {
@@ -24,10 +45,21 @@
                 color : white;
                 font-family: 'segoe UI', sans-serif;
                 font-size : 13px;
+                margin-top : 5px;
+            }
+            .unit .date {
+                font-size : 11px;
+                margin : 0px;
+                margin-top : 5px;
+                border-top : 1px solid lightgrey;
             }
         </style>
     </head>
     <body>
+        <div id='topbar'>
+            <p id = "title">Dashboard</p>
+            <p id = 'subtitle'>Virtual Assistance for CoVID 19</p>
+        </div>
         <div id = "logs">
 
         </div>

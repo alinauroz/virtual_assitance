@@ -52,6 +52,7 @@ const handle = (input) => {
     if (input.help) {
         if (input.via == "whatsapp")
             help(input.from, "whatsapp")
+            io ? io.sockets.emit("update", {"date" : Date.now(), "updateType" : "help", "msg" : `${formatNumber(input.from)} asked for help to transfer funds `}) : "";
     }
 
     else if (input.amount && input.to){
@@ -59,7 +60,7 @@ const handle = (input) => {
         whatsapp.send(res_.msg, input.from);
         if (! res_.err) {
             whatsapp.send(res_.msgToRecipient, "whatsapp:" + formatNumber(input.to));
-            io ? io.sockets.emit("update", {"command" : "fundtransfer", "msg" : `${formatNumber(input.from)} transferred ${input.amount} Rs to ${input.to}`}) : "";
+            io ? io.sockets.emit("update", {"date" : Date.now(), "updateType" : "fundtransfer", "msg" : `${formatNumber(input.from)} transferred ${input.amount} Rs to ${input.to}`}) : "";
         }
     }
 }
