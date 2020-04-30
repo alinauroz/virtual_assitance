@@ -49,6 +49,7 @@ const tokenFunction = {
 
 const parse = str => {
     let tokens = lex(str);
+    tokens[0] = tokens[0].toLowerCase();
     try {
         return tokenFunction[tokens[0]](tokens);
     }
