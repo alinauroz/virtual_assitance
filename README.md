@@ -10,7 +10,7 @@ The main purpose of this app is to connect people who do not have access to inte
 
 In order to run this app, clone this repo using git.
 
-`git clone https://github.com/alinauroz/repo.git`
+`git clone https://github.com/alinauroz/virtual_assitance.git`
 
 Then install dependencies using
 
