@@ -22,6 +22,9 @@ Router.get("/", (req, res) => {
 });
 
 Router.post("/", (req, res) => {
+
+    //perform signature validations here
+
     let msg = req.body.Body;
     msgs.push(req.body);
 
