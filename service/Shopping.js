@@ -57,7 +57,7 @@ const handle = input => {
     }
     else if (input.id) {
         if(buy(input.from, input.via, input.id)) {
-            io.sockets.emit("update", {msg : `${formatNumber(input.from)} wants bought ${inventory.get(input.id).name}`, date : Date.now()});
+            io.sockets.emit("update", {msg : `${formatNumber(input.from)} bought ${inventory.get(input.id).name}`, date : Date.now()});
         }
     }
 }
