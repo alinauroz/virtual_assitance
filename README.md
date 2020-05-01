@@ -1,4 +1,4 @@
-# Virtual Assistance for CoVID 19
+# Virtual Assistance using SMS and Whatsapp
 
 The main purpose of this app is to connect people who do not have access to internet or smartphones with power Apis and other services such as online fund transfers and online shopping. This app has three services which are:
 
