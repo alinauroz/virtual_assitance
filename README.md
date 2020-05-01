@@ -16,7 +16,7 @@ Then install dependencies using
 
 `npm i`
 
-You will also need to add your Twilio AuthToken, ID and phone numbers to env.json file. To start app
+You will also need to add your Twilio AuthToken, ID and phone numbers to .env file. To start app, run
 
 `node index.js`
 
