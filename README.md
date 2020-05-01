@@ -26,7 +26,7 @@ You can check this app locally using Postman. To check this working in real, dep
 
 Goto `/dashboard` to view live updates.
 
-![Demo](https://github.com/alinauroz/dev_post/blob/master/shopping_demo.gif%3Fraw%3Dtrue)
+![Demo](https://github.com/alinauroz/dev_post/blob/master/latest-ft.gif?raw=true)
 
 To use this app send message to either your Twilio number or the whatsapp number that Twilio has given you. Below is a procesure to use these services.
 
