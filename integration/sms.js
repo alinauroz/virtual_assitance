@@ -1,12 +1,15 @@
-const env = require("../env.json");
+const env = require("dotenv");
 
-const accountSid = env.accountSid;
-const authToken = env.authToken;
+env.config();
+
+const accountSid = process.env.ACCOUNTSID;
+const authToken = process.env.AUTHTOKEN;
+
 const client = require('twilio')(accountSid, authToken);
 
 const send = (msg, to) => {
     client.messages.create({
-        from: env.numbers[0],
+        from: process.env.NUMBER,
         body : msg,
         to: to
     }).then(data=> {

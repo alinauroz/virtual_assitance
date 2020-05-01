@@ -1,9 +1,11 @@
 const express = require("express");
 const Router = express.Router();
 const parse = require("../functions/parse.js");
-const env = require("../env.json");
+const env = require("dotenv");
 const twilio = require("twilio");
 let io;
+
+env.config();
 
 let productionMode = process.env.PORT;
 
@@ -34,7 +36,7 @@ Router.post("/", (req, res) => {
     const url = 'https://frozen-sierra-78630.herokuapp.com/whatsapp';
 
     const requestIsValid = twilio.validateRequest(
-        env.authToken,
+        process.env.AUTHTOKEN,
         twilioSignature,
         url,
         params
